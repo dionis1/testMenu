@@ -26,12 +26,17 @@ $currentUrl = url()->current();
 								<form method="get" action="{{ $currentUrl }}">
 									<label for="menu" class="selected-menu">Select the menu you want to edit:</label>
 
-									{!! Menu::select('menu', $menulist) !!}
+									<select id="inputState" class="form-control" name="menu">
+								        <option selected>Choose...</option>
+								        @foreach($menulist as $menu)
+								         <option value="{{ $menu->id }}">{{ $menu->name }}</option>
+								        @endforeach
+								     </select>
 
 									<span class="submit-btn">
 										<input type="submit" class="button-secondary" value="Choose">
 									</span>
-									<span class="add-new-menu-action"> or <a href="{{ $currentUrl }}?action=edit&menu=0">Create new menu</a>. </span>
+									<span class="add-new-menu-action"> or <a href="/">Create new menu</a>. </span>
 								</form>
 							</div>
 							<div id="nav-menus-frame">
@@ -166,7 +171,8 @@ $currentUrl = url()->current();
 
 																	<div class="menu-item-actions description-wide submitbox">
 
-																		<a class="item-delete submitdelete deletion" id="delete-{{$m->id}}" href="{{ $currentUrl }}?action=delete-menu-item&menu-item={{$m->id}}&_wpnonce=2844002501">Delete</a>
+																		<a onclick="deleteitem({{$m->id}})" class="item-delete submitdelete deletion" href="javascript:void(0)" id="delete-{{$m->id}}" >Delete</a>
+
 																		<span class="meta-sep hide-if-no-js"> | </span>
 																		<a class="item-cancel submitcancel hide-if-no-js button-secondary" id="cancel-{{$m->id}}" href="{{ $currentUrl }}?edit-menu-item={{$m->id}}&cancel=1424297719#menu-item-settings-{{$m->id}}">Cancel</a>
 																		<span class="meta-sep hide-if-no-js"> | </span>
@@ -243,10 +249,10 @@ $currentUrl = url()->current();
 	};
 	var arraydata = [];     
 	var addcustommenur= '{{ route("add") }}';
-	var updateitemr= '{{ route("hupdateitem")}}';
-	var generatemenucontrolr= '{{ route("hgeneratemenucontrol") }}';
-	var deleteitemmenur= '{{ route("hdeleteitemmenu") }}';
-	var deletemenugr= '{{ route("hdeletemenug") }}';
+	var updateitemr= '{{ route("update")}}';
+	var generatemenucontrolr= '{{ route("updatemenu") }}';
+	var deleteitemmenur= '{{ route("deleteitem") }}';
+	var deletemenugr= '{{ route("delete") }}';
 	var createnewmenur= '{{ route("store") }}';
 	var csrftoken="{{ csrf_token() }}";
 	var menuwr = "{{ url()->current() }}";

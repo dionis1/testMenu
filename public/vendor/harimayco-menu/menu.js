@@ -46,13 +46,13 @@ function addcustommenu() {
 		url : addcustommenur,
 		type : 'POST',
 		success : function(response) {
-			console.log(response);
-			// window.location = "";
+			
+		    window.location = "";
 
 		},
-		// complete: function(){
-		// 	$("#spincustomu").hide();
-		// }
+		complete: function(){
+			$("#spincustomu").hide();
+		}
 
 	});
 }
@@ -96,6 +96,7 @@ function updateitem(id = 0) {
 			}
 		},
 		success : function(response) {
+				
 						},
 		complete: function(){
 			if(id){
@@ -122,7 +123,7 @@ function actualizarmenu() {
 		},
 		success : function(response) {
 
-			console.log("aqu llega")
+			console.log(response);
 			
 		},
 		complete: function(){
@@ -132,6 +133,7 @@ function actualizarmenu() {
 }
 
 function deleteitem(id) {
+	
 	$.ajax({
 		dataType : "json",
 		data : {
@@ -142,6 +144,8 @@ function deleteitem(id) {
 		url :deleteitemmenur,
 		type : 'POST',
 		success : function(response) {
+
+			window.location = "";
 
 		}
 	});
@@ -167,7 +171,7 @@ function deletemenu() {
 			success : function(response) {
 
 				if (!response.error) {
-					alert(response.resp);
+					alert(response);
 					window.location = menuwr
 				}else{
 					alert(response.resp)
@@ -198,9 +202,8 @@ function createnewmenu() {
 			url :createnewmenur,
 			type : "POST",
 			success : function(response) {
-				console.log(response)
 
-				window.location = menuwr+"?menu=" + response.resp
+				window.location = menuwr+"?menu=" + response.id
 
 			}
 		});

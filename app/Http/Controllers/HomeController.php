@@ -17,7 +17,7 @@ class HomeController extends Controller
 
         $menu->save();
 
-        return response()->json([$menu, 200]);
+        return response()->json($menu);
     }
 
     public function add(Request $request)
@@ -33,6 +33,7 @@ class HomeController extends Controller
 
         $menuitem->save();
 
-        return response()->json([$menuitem, 200]);
+        return response()->json($menuitem);
     }
+
 }
